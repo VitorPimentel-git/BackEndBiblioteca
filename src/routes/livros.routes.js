@@ -6,7 +6,7 @@ import{
  deletarLivro,
  listarLivros,
  obterLivro,
-} from "../controllers/livros.controller.js"
+} from "../controllers/livros.controllers.js"
 
 
 

@@ -5,7 +5,7 @@ export async function listarFavoritos(req ,res) {
         const idUsuario = req.params.id;
         const [rows] = await db.execute("SELECT * FROM favoritos WHERE idUsuario = ?", [idUsuario]);
     res.json(rows);
-    } catch (err) {
+    } catch (error) {
         res.status(500).json({ erro: err.message });
     }
 }
@@ -21,7 +21,7 @@ export async function criarFavorito(req, res) {
     );
 
     res.json({ mensagem: "Livro favoritado com sucesso!" });
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ erro: err.message });
   }
 };
@@ -30,7 +30,7 @@ export async function deletarFavorito(req, res) {
   try {
     await db.execute("DELETE FROM favoritos WHERE idFavorito = ?", [req.params.id]);
     res.json({ mensagem: "Livro retirado dos favoritos!" });
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ erro: err.message });
   }
 };

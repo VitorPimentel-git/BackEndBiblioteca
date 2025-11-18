@@ -12,7 +12,7 @@ export async function adicionarLivro(req, res) {
     );
 
     res.json({ mensagem: "Livro adicionado com sucesso!" });
-  } catch (err) {
+  } catch (erro) {
     res.status(500).json({ erro: err.message });
   }
 };
@@ -21,7 +21,7 @@ export async function listarLivros(req, res) {
   try {
     const [rows] = await db.execute("SELECT * FROM livros");
     res.json(rows);
-  } catch (err) {
+  } catch (erro) {
     res.status(500).json({ erro: err.message });
   }
 };
@@ -33,7 +33,7 @@ export async function obterLivro(req, res) {
     if (rows.length === 0)
       return res.status(404).json({ erro: "Livro não encontrado" });
     res.json(rows[0]);
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ erro: err.message });
   }
 };
@@ -45,7 +45,7 @@ export async function atualizarLivro(req, res) {
       [titulo, autor, descricao, disponivel, req.params.id]
     );
     res.json({ mensagem: "Livro atualizado com sucesso!" });
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ erro: err.message });
   }
 };
@@ -53,7 +53,7 @@ export async function deletarLivro(req, res) {
   try {
     await db.execute("DELETE FROM livros WHERE idLivro = ?", [req.params.id]);
     res.json({ mensagem: "Livro deletado com sucesso!" });
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ erro: err.message });
   }
 };
@@ -70,7 +70,7 @@ export async function avaliacaoLivros(req, res) {
       ORDER BY l.titulo
     `);
     return res.json(rows);
-  } catch (err) {
+  } catch (error) {
     return res.status(500).json({ erro: err.message });
   }
 }

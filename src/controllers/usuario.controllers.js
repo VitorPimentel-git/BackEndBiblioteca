@@ -17,7 +17,7 @@ export async function criarUsuario(req, res) {
     );
 
     res.json({ mensagem: "Usuário criado com sucesso!" });
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ erro: err.message });
   }
 };
@@ -27,7 +27,7 @@ export async function listarUsuarios (req, res){
   try {
     const [rows] = await db.execute("SELECT * FROM usuarios");
     res.json(rows);
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ erro: err.message });
   }
 };
